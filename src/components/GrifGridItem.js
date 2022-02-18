@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 function GrifGridItem({id,title,url}) {
   return (
@@ -8,6 +9,10 @@ function GrifGridItem({id,title,url}) {
     
     </div>
   )
+}
+GrifGridItem.prototypes = {
+    title:PropTypes.string.isRequired,
+    url:PropTypes.string.isRequired
 }
 
 export default GrifGridItem

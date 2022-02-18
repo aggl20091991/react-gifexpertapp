@@ -1,33 +1,39 @@
-import React, {useState} from 'react'
-import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+import PropTypes from 'prop-types';
 
-const AddCategory = ({setCategories}) => {
-    const [inputValue,setInputValue] = useState('');
-    const handlerInputChange = (e) =>{
-        setInputValue(e.target.value)
+export const AddCategory = ({ setCategories }) => {
+
+    const [inputValue, setInputValue] = useState(''); // ''
+
+    const handleInputChange = ( e ) => {
+        setInputValue( e.target.value );
     }
-    const handlerSubmit = (e) =>{
-        //se usa para no dar el f5
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        if(inputValue.trim().length>1){
-        setCategories(cats =>[inputValue,...cats]);
-        //se manda a vacio el input
-        setInputValue('')
+
+        if ( inputValue.trim().length > 2 ) {
+            setCategories( cats => [ inputValue, ...cats, ] );
+            setInputValue('');
         }
 
     }
-  return (
-      <form onSubmit={handlerSubmit}>
-     <input type="text" 
-     value={inputValue} 
-     onChange={handlerInputChange}
-     
-     />   
-      </form>
-  )
+
+    return (
+        <form onSubmit={ handleSubmit }>
+            <p>{inputValue}</p>
+            <input 
+                type="text"
+                value={ inputValue }
+                onChange={ handleInputChange }
+            />
+        </form>
+    )
 }
-AddCategory.protoTypes = {
-    setCategories : PropTypes.func.isRequired
+
+
+AddCategory.propTypes = {
+    setCategories: PropTypes.func.isRequired
 }
 
 export default AddCategory
